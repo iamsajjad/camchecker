@@ -21,7 +21,6 @@ def runCheck(request):
     cams.active()
     
     ignore = ignore.split(' ')
-    print(ignore)
     
     cams.activeAddresses = [ip for ip in cams.activeAddresses if ip not in ignore]
     cams.deactiveAddresses = [ip for ip in cams.deactiveAddresses if ip not in ignore]
