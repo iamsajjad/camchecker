@@ -1,0 +1,46 @@
+<!DOCTYPE>
+<HTML>
+    <head>
+    <title>camchecker</title>{% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'homepage.css' %}">
+    </head>
+    <body>
+        <div class="container">
+            <form id="contact"action="/runCheck/" method="POST"> {% csrf_token %}
+                <h3>camChecker</h3>
+                <h4>Plase Enter IPaddresses Range</h4>
+                <fieldset>
+                    <input type="text" id="srange" name="srange" placeholder="Start Range IP">
+                </fieldset>
+                <fieldset>
+                    <input type="text" id="erange" name="erange" placeholder="End Range IP">
+                </fieldset>
+                    <textarea name="ignore" rows="30" cols="100" placeholder="enter ignored IPs separated by Space"></textarea>
+                </fieldset>
+                    <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+                </fieldset>
+                <p class="copyright">Designed by <a href="https://github.com/iamsajjad" target="_blank"
+                    title="Sajjad:GitHub">Sajjad</a></p>
+            </form>
+        </div>
+        </form>
+        {% if start %}
+        <div id="contact">
+            <p>Start Range @ {{ start }} End Range @ {{ end }}</p>  
+                <br>
+            <p><b>Active CAMS</b></p> 
+                <br>
+            {% for cam in active %}
+                <p>CAM{{ forloop.counter }} @ {{ cam }} </p> <p class="emo" >😊</p>  
+                <br>
+            {% endfor %}
+            <p><b>Deactive CAMS</b></p> 
+                <br>
+            {% for cam in deactive %}
+                <p>CAM{{ forloop.counter }} @ {{ cam }} </p> <p class="emo" >😥</p>  
+                <br>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </body>
+</HTML>
