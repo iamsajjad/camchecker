@@ -17,19 +17,16 @@ def runCheck(request):
     eRange = request.POST['erange']
     ignore = request.POST['ignore']
     
-    cams = Quickping(sRange, eRange, log=True, threads=512)
-    cams.active()
-    
     ignore = ignore.split(' ')
-    
-    cams.activeAddresses = [ip for ip in cams.activeAddresses if ip not in ignore]
-    cams.deactiveAddresses = [ip for ip in cams.deactiveAddresses if ip not in ignore]
-    
+    cams = Quickping(sRange, eRange, ignore=ignore, threads=256, log=True)
+    cams.active()
+
     response = {
             "start": cams.start,
             "end": cams.end,
             "active": cams.activeAddresses,
             "deactive": cams.deactiveAddresses,
     }
+
     return render(request, 'homepage.html', response)
 
