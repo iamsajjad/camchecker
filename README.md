@@ -12,5 +12,5 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-then Go to *172.0.0.1:8000* on the Browser
+then Go to *127.0.0.1:8000* on the Browser
 
