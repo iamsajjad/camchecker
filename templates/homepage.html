@@ -15,7 +15,7 @@
                 <fieldset>
                     <input type="text" id="erange" name="erange" placeholder="End Range IP">
                 </fieldset>
-                    <textarea name="ignore" rows="30" cols="100" placeholder="enter ignored IPs separated by Space"></textarea>
+                    <textarea name="ignore" rows="30" cols="100" placeholder="enter ignored IPs separated by newline"></textarea>
                 </fieldset>
                     <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
                 </fieldset>
@@ -26,18 +26,18 @@
         </form>
         {% if start %}
         <div id="contact">
-            <p>Start Range @ {{ start }} End Range @ {{ end }}</p>  
+            <p>Start Range @ {{ start }} End Range @ {{ end }}</p>
                 <br>
-            <p><b>Active CAMS</b></p> 
+            <p><b>Active CAMS</b></p>
                 <br>
             {% for cam in active %}
-                <p>CAM{{ forloop.counter }} @ {{ cam }} </p> <p class="emo" >😊</p>  
+                <p>CAM{{ forloop.counter }} @ {{ cam }} </p> <p class="emo" >✔️</p>
                 <br>
             {% endfor %}
-            <p><b>Deactive CAMS</b></p> 
+            <p><b>Deactive CAMS</b></p>
                 <br>
             {% for cam in deactive %}
-                <p>CAM{{ forloop.counter }} @ {{ cam }} </p> <p class="emo" >😥</p>  
+                <p>CAM{{ forloop.counter }} @ {{ cam }} </p> <p class="emo" >❌</p>
                 <br>
             {% endfor %}
         </div>

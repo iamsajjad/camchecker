@@ -16,14 +16,15 @@ def runCheck(request):
     sRange = request.POST['srange']
     eRange = request.POST['erange']
     ignore = request.POST['ignore']
-    
-    ignore = ignore.split(' ')
-    cams = Quickping(sRange, eRange, ignore=ignore, threads=256, log=True)
+
+    ignore = ignore.split('\n')
+    cams = Quickping(sRange, eRange, ignore=ignore, threads=512, log=True)
     cams.active()
 
     response = {
             "start": cams.start,
             "end": cams.end,
+            "ignore": cams.ignore,
             "active": cams.activeAddresses,
             "deactive": cams.deactiveAddresses,
     }
