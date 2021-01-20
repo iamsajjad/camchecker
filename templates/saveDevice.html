@@ -1,0 +1,38 @@
+<!DOCTYPE>
+<HTML>
+  <head>
+    <title>camchecker</title>{% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'homepage.css' %}">
+  </head>
+  <body>
+    <div class="container">
+      <form id="addressesForm"action="/saveDevice/" method="POST"> {% csrf_token %}
+        <a href="/"><h3>camChecker</h3></a>
+        <h4>Save Device 'name' associated with it 'ip_address'</h4>
+        <fieldset>
+          <input type="text" id="srange" name="ipaddress" placeholder="IP address" value="">
+        </fieldset>
+        <fieldset>
+          <input type="text" id="erange" name="name" placeholder="Device Name" value="">
+        </fieldset>
+        <button name="submit" type="submit" id="addressesForm-submit" data-submit="...Sending">Submit</button>
+        </fieldset>
+        <p class="copyright">Designed by <a href="https://github.com/iamsajjad" target="_blank"
+                                                                                title="Sajjad:GitHub">Sajjad</a> using Quickping Package</p>
+      </form>
+    </div>
+    </form>
+    {% if start %}
+    <div id="addressesForm">
+      <br>
+      <p><b>Saved Devices</b></p>
+      <br>
+      {% for device in devices %}
+      <p class="activeAddress">{{ forloop.counter }} - {{ device.name }} @ {{ device.ipaddress }}</p> <p class="emo" ></p>
+      <br>
+      {% endfor %}
+      <br>
+    </div>
+    {% endif %}
+  </body>
+</HTML>

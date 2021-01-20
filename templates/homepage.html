@@ -8,7 +8,7 @@
     <div class="container">
       <form id="addressesForm"action="/runCheck/" method="POST"> {% csrf_token %}
         <a href="/"><h3>camChecker</h3></a>
-        <h4>Plase Enter IPaddresses Range</h4>
+        <h4>Plase Enter IPaddresses Range or <a href="/saveDevice/">Save Device<a></h4>
         <fieldset>
           <input type="text" id="srange" name="srange" placeholder="Start Range IP" value="192.168.0.0">
         </fieldset>
@@ -42,16 +42,32 @@
       <br>
       <p><b>Active Cams</b></p>
       <br>
-      {% for cam in active %}
-      <p class="activeAddress">CAM{{ forloop.counter }} @ {{ cam }} </p> <p class="emo" >✔️</p>
+      {% for cam in saved %}
+      {% if cam.ipaddress in active %}
+      <p class="activeAddress">{{ forloop.counter }} - {{ cam.name }} @ {{ cam.ipaddress }}</p> <p class="emo" >✔️</p>
       <br>
+      {% endif %}
+      {% endfor %}
+      {% for cam in active %}
+      {% if not cam in saved %}
+      <p class="activeAddress">{{ forloop.counter }} - {{ cam }} </p> <p class="emo" >✔️</p>
+      <br>
+      {% endif %}
       {% endfor %}
       <br>
       <p><b>Deactive Cams</b></p>
       <br>
-      {% for cam in deactive %}
-      <p class="deactiveAddress">CAM{{ forloop.counter }} @ {{ cam }} </p> <p class="emo" >❌</p>
+      {% for cam in saved %}
+      {% if cam.ipaddress in deactive %}
+      <p class="deactiveAddress">{{ forloop.counter }} - {{ cam.name }} @ {{ cam.ipaddress }}</p> <p class="emo" >❌</p>
       <br>
+      {% endif %}
+      {% endfor %}
+      {% for cam in deactive %}
+      {% if not cam in saved %}
+      <p class="deactiveAddress">{{ forloop.counter }} - {{ cam }} </p> <p class="emo" >❌</p>
+      <br>
+      {% endif %}
       {% endfor %}
     </div>
     {% endif %}

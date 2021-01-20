@@ -7,4 +7,5 @@ from .views import *
 urlpatterns = [
     path('', homepage),
     path('runCheck/', runCheck),
+    path('saveDevice/', saveDevice),
 ]
